@@ -14,6 +14,6 @@ public class ImageSink extends Sink<PlanarImage> {
 
     @Override
     public void write(PlanarImage value) throws StreamCorruptedException {
-
+        return;
     }
 }
