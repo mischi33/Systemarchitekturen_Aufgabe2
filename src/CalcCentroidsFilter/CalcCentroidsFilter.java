@@ -17,6 +17,7 @@ import pmp.interfaces.Writeable;
 
 import javax.media.jai.PlanarImage;
 
+
 public class CalcCentroidsFilter extends DataCompositionFilter<PlanarImage, LinkedList<Coordinate>> {
 
 	private HashMap<Coordinate, Boolean> _general = new HashMap<Coordinate, Boolean>();
