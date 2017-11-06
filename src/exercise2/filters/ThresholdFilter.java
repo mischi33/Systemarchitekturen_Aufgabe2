@@ -21,13 +21,13 @@ public class ThresholdFilter extends DataTransformationFilter2<PlanarImage, Plan
 
     @Override
     protected PlanarImage process(PlanarImage entity) {
-        Integer[] lowVal = new Integer[10];
-        Integer[] highVal = new Integer[10];
-        Integer[] constant = new Integer[10];
+        double[] lowVal = new double[10];
+        double[] highVal = new double[10];
+        double[] constant = new double[10];
 
-        lowVal[0] = 50;
-        highVal[0] = 50;
-        constant[0] = 50;
+        lowVal[0] = 50.0;
+        highVal[0] = 50.0;
+        constant[0] = 50.0;
 
 
         ParameterBlock parameterBlock = new ParameterBlock();
