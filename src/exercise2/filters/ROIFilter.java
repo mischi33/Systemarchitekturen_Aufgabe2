@@ -21,6 +21,6 @@ public class ROIFilter extends DataTransformationFilter2<PlanarImage, PlanarImag
 
     @Override
     public PlanarImage process(PlanarImage entity) {
-        return PlanarImage.wrapRenderedImage((RenderedImage)entity.getAsBufferedImage(rectangle, entity.getColorModel()));
+        return PlanarImage.wrapRenderedImage(entity.getAsBufferedImage(rectangle, entity.getColorModel()));
     }
 }

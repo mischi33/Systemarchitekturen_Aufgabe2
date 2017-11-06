@@ -8,7 +8,11 @@ import java.awt.*;
 public class Main {
     public static void main(String[] args) {
         ImageSink imageSink = new ImageSink();
-        SimplePipe pipe_0 = new SimplePipe(imageSink);
+        SimplePipe pipe0 = new SimplePipe(imageSink);
+        DisplayFilter displayFilter1 = new DisplayFilter(pipe0);
+        SimplePipe pipe1 = new SimplePipe((Writeable) displayFilter1);
+        MedianFilter medianFilter = new MedianFilter(pipe1);
+        SimplePipe pipe_0 = new SimplePipe((Writeable) medianFilter);
         DisplayFilter displayFilter = new DisplayFilter(pipe_0);
         SimplePipe pipe_00 = new SimplePipe((Writeable) displayFilter);
         ThresholdFilter thresholdFilter = new ThresholdFilter(pipe_00);
