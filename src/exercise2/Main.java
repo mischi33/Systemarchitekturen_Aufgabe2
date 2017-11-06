@@ -1,9 +1,6 @@
 package exercise2;
 
-import exercise2.filters.DisplayFilter;
-import exercise2.filters.ImageSink;
-import exercise2.filters.ImageSource;
-import exercise2.filters.ROIFilter;
+import exercise2.filters.*;
 import pmp.interfaces.Writeable;
 import pmp.pipes.SimplePipe;
 import java.awt.*;
@@ -11,7 +8,11 @@ import java.awt.*;
 public class Main {
     public static void main(String[] args) {
         ImageSink imageSink = new ImageSink();
-        SimplePipe pipe_1 = new SimplePipe(imageSink);
+        SimplePipe pipe_0 = new SimplePipe(imageSink);
+        DisplayFilter displayFilter = new DisplayFilter(pipe_0);
+        SimplePipe pipe_00 = new SimplePipe((Writeable) displayFilter);
+        ThresholdFilter thresholdFilter = new ThresholdFilter(pipe_00);
+        SimplePipe pipe_1 = new SimplePipe((Writeable) thresholdFilter);
         DisplayFilter df2 = new DisplayFilter(pipe_1);
         SimplePipe pipe_1b = new SimplePipe((Writeable) df2);
         ROIFilter roiFilter = new ROIFilter(pipe_1b, new Rectangle(0, 50, 448, 100));
