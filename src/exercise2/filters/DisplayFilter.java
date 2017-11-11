@@ -16,6 +16,10 @@ import java.security.InvalidParameterException;
 public class DisplayFilter extends DataTransformationFilter1<PlanarImage> {
 
 
+    public DisplayFilter(Readable<PlanarImage> input) throws InvalidParameterException {
+        super(input);
+    }
+
     public DisplayFilter(Writeable<PlanarImage> output) throws InvalidParameterException {
         super(output);
     }

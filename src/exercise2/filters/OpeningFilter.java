@@ -2,6 +2,7 @@ package exercise2.filters;
 
 import javafx.scene.shape.Circle;
 import pmp.filter.DataTransformationFilter2;
+import pmp.interfaces.Readable;
 import pmp.interfaces.Writeable;
 
 import javax.media.jai.JAI;
@@ -10,7 +11,14 @@ import javax.media.jai.PlanarImage;
 import java.awt.image.renderable.ParameterBlock;
 import java.security.InvalidParameterException;
 
+
 public class OpeningFilter extends DataTransformationFilter2<PlanarImage, PlanarImage> {
+
+
+    public OpeningFilter(Readable<PlanarImage> input) throws InvalidParameterException {
+        super(input);
+    }
+
     public OpeningFilter(Writeable<PlanarImage> output) throws InvalidParameterException {
         super(output);
     }

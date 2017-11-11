@@ -1,6 +1,7 @@
 package exercise2.filters;
 
 import pmp.filter.DataTransformationFilter2;
+import pmp.interfaces.Readable;
 import pmp.interfaces.Writeable;
 
 import javax.media.jai.JAI;
@@ -14,6 +15,11 @@ import java.security.InvalidParameterException;
  * Created by Michelle on 06.11.2017.
  */
 public class ThresholdFilter extends DataTransformationFilter2<PlanarImage, PlanarImage> {
+
+
+    public ThresholdFilter(Readable<PlanarImage> input) throws InvalidParameterException {
+        super(input);
+    }
 
     public ThresholdFilter(Writeable<PlanarImage> output) throws InvalidParameterException {
         super(output);

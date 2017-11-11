@@ -1,4 +1,4 @@
-package exercise2.filters.CalcCentroidsFilter;
+package exercise2.filters.calcCentroidsFilter;
 //package com.code.revisited.concurrent.locks;
  
 import java.util.HashMap;

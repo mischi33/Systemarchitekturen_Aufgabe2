@@ -1,4 +1,4 @@
-package exercise2.filters.CalcCentroidsFilter;
+package exercise2.filters.calcCentroidsFilter;
 
 /* this filter expects the bonding discs to be completely white: pixel value of 255 on a scale of 0..255
  * all other pixels in the image are expected to have a pixel value < 255

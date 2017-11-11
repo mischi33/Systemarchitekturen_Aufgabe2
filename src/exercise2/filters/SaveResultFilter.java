@@ -1,6 +1,7 @@
 package exercise2.filters;
 
 import pmp.filter.DataTransformationFilter2;
+import pmp.interfaces.Readable;
 import pmp.interfaces.Writeable;
 
 import javax.imageio.ImageIO;
@@ -10,6 +11,11 @@ import java.io.IOException;
 import java.security.InvalidParameterException;
 
 public class SaveResultFilter extends DataTransformationFilter2<PlanarImage, PlanarImage> {
+
+
+    public SaveResultFilter(Readable<PlanarImage> input) throws InvalidParameterException {
+        super(input);
+    }
 
     public SaveResultFilter(Writeable<PlanarImage> output) throws InvalidParameterException {
         super(output);
