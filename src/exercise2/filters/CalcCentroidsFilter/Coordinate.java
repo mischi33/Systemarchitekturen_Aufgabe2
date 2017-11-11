@@ -1,5 +1,5 @@
 
-package CalcCentroidsFilter;
+package exercise2.filters.CalcCentroidsFilter;
 
 public class Coordinate {
 

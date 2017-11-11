@@ -1,6 +1,7 @@
 package exercise2;
 
 import exercise2.filters.*;
+import exercise2.filters.CalcCentroidsFilter.CalcCentroidsFilter;
 import pmp.interfaces.Writeable;
 import pmp.pipes.SimplePipe;
 import java.awt.*;
@@ -8,28 +9,30 @@ import java.awt.*;
 public class Main {
     public static void main(String[] args) {
         ImageSink imageSink = new ImageSink();
-        SimplePipe simplePipee = new SimplePipe(imageSink);
-        SaveResultFilter saveResultFilter = new SaveResultFilter(simplePipee);
-        SimplePipe simplePipe1 = new SimplePipe((Writeable) saveResultFilter);
-        DisplayFilter displayFilter0 = new DisplayFilter(simplePipe1);
-        SimplePipe simplePipe = new SimplePipe((Writeable) displayFilter0);
-        OpeningFilter openingFilter = new OpeningFilter(simplePipe);
-        SimplePipe pipe0 = new SimplePipe((Writeable) openingFilter);
-        DisplayFilter displayFilter1 = new DisplayFilter(pipe0);
-        SimplePipe pipe1 = new SimplePipe((Writeable) displayFilter1);
-        MedianFilter medianFilter = new MedianFilter(pipe1);
-        SimplePipe pipe_0 = new SimplePipe((Writeable) medianFilter);
-        DisplayFilter displayFilter = new DisplayFilter(pipe_0);
-        SimplePipe pipe_00 = new SimplePipe((Writeable) displayFilter);
-        ThresholdFilter thresholdFilter = new ThresholdFilter(pipe_00);
-        SimplePipe pipe_1 = new SimplePipe((Writeable) thresholdFilter);
-        DisplayFilter df2 = new DisplayFilter(pipe_1);
-        SimplePipe pipe_1b = new SimplePipe((Writeable) df2);
-        ROIFilter roiFilter = new ROIFilter(pipe_1b, new Rectangle(0, 50, 448, 100));
-        SimplePipe pipe_1a = new SimplePipe((Writeable) roiFilter);
-        DisplayFilter df = new DisplayFilter(pipe_1a);
-        SimplePipe pipe_2 = new SimplePipe((Writeable) df);
-        ImageSource imageSource = new ImageSource(pipe_2, "loetstellen.jpg");
+        SimplePipe pipe_1 = new SimplePipe(imageSink);
+        CalcCentroidsFilter calcCentroidsFilter = new CalcCentroidsFilter((Writeable) pipe_1);
+        SimplePipe pipe_2 = new SimplePipe((Writeable) calcCentroidsFilter);
+        SaveResultFilter saveResultFilter = new SaveResultFilter(pipe_2);
+        SimplePipe pipe_3 = new SimplePipe((Writeable) saveResultFilter);
+        DisplayFilter displayFilter0 = new DisplayFilter(pipe_3);
+        SimplePipe pipe_4 = new SimplePipe((Writeable) displayFilter0);
+        OpeningFilter openingFilter = new OpeningFilter(pipe_4);
+        SimplePipe pipe_5 = new SimplePipe((Writeable) openingFilter);
+        DisplayFilter displayFilter1 = new DisplayFilter(pipe_5);
+        SimplePipe pipe_6 = new SimplePipe((Writeable) displayFilter1);
+        MedianFilter medianFilter = new MedianFilter(pipe_6);
+        SimplePipe pipe_7 = new SimplePipe((Writeable) medianFilter);
+        DisplayFilter displayFilter = new DisplayFilter(pipe_7);
+        SimplePipe pipe_8 = new SimplePipe((Writeable) displayFilter);
+        ThresholdFilter thresholdFilter = new ThresholdFilter(pipe_8);
+        SimplePipe pipe_9 = new SimplePipe((Writeable) thresholdFilter);
+        DisplayFilter df2 = new DisplayFilter(pipe_9);
+        SimplePipe pipe_10 = new SimplePipe((Writeable) df2);
+        ROIFilter roiFilter = new ROIFilter(pipe_10, new Rectangle(0, 50, 448, 100));
+        SimplePipe pipe_11 = new SimplePipe((Writeable) roiFilter);
+        DisplayFilter df = new DisplayFilter(pipe_11);
+        SimplePipe pipe_12 = new SimplePipe((Writeable) df);
+        ImageSource imageSource = new ImageSource(pipe_12, "loetstellen.jpg");
         imageSource.run();
 
     }
