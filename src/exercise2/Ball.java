@@ -9,10 +9,12 @@ public class Ball {
     private boolean coordToleranceOk;
     private boolean diameterToleranceOk;
 
-    public Ball (Coordinate coordinate, Integer diameter){
+    public Ball(Coordinate coordinate, Integer diameter) {
 
-        this.coordinate=coordinate;
-        this.diameter=diameter;
+        this.coordinate = coordinate;
+        this.diameter = diameter;
+        coordToleranceOk = false;
+        diameterToleranceOk = false;
     }
 
     public Coordinate getCoordinate() {
