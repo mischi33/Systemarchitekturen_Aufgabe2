@@ -28,7 +28,7 @@ public class CalcToleranceFilter extends DataTransformationFilter2<List<Ball>, L
         super(output);
         this.coordinateToleranceMin = coordinateToleranceMin;
         this.coordinateToleranceMax = coordinateToleranceMax;
-        this.diameterToleranceMin = diameterToleranceMax;
+        this.diameterToleranceMin = diameterToleranceMin;
         this.diameterToleranceMax = diameterToleranceMax;
     }
 
@@ -37,8 +37,8 @@ public class CalcToleranceFilter extends DataTransformationFilter2<List<Ball>, L
         List<Ball> balls = new ArrayList<>();
         for (int i = 1; i < entity.size(); i++) {
             Ball ball = entity.get(i);
-            Coordinate toleranceCoordMin = coordinateToleranceMin.get(i);
-            Coordinate toleranceCoordMax = coordinateToleranceMax.get(i);
+            Coordinate toleranceCoordMin = coordinateToleranceMin.get(i-1);
+            Coordinate toleranceCoordMax = coordinateToleranceMax.get(i-1);
             if (ball.getCoordinate()._x >= toleranceCoordMin._x &&
                     ball.getCoordinate()._x <= toleranceCoordMax._x &&
                     ball.getCoordinate()._y >= toleranceCoordMin._y &&

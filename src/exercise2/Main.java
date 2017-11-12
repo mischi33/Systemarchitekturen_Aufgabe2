@@ -17,24 +17,11 @@ public class Main {
     }
 
     private static void pushPipe() {
-        List<Coordinate> min = new ArrayList<>();
-        min.add(new Coordinate(71, 75));
-        min.add(new Coordinate(108, 78));
-        min.add(new Coordinate(200, 78));
-        min.add(new Coordinate(263, 77));
-        min.add(new Coordinate(328, 79));
-        min.add(new Coordinate(394, 79));
-        List<Coordinate> max = new ArrayList<>();
-        max.add(new Coordinate(75, 79));
-        max.add(new Coordinate(112, 82));
-        max.add(new Coordinate(204, 82));
-        max.add(new Coordinate(267, 81));
-        max.add(new Coordinate(332, 83));
-        max.add(new Coordinate(398, 83));
+        List<Coordinate> min = createMinList();
+        List<Coordinate> max = createMaxList();
 
-
-        ImageSink imageSink = new ImageSink();
-        SimplePipe pipe_1 = new SimplePipe(imageSink);
+        FileSink fileSink = new FileSink();
+        SimplePipe pipe_1 = new SimplePipe(fileSink);
         CalcToleranceFilter calcToleranceFilter = new CalcToleranceFilter((Writeable) pipe_1, 19, 21, min, max);
         SimplePipe pipe_y = new SimplePipe((Writeable) calcToleranceFilter);
         CalcDiameterFilter calcDiameterFilter = new CalcDiameterFilter((Writeable) pipe_y,"loetstellenErgebnis.png");
@@ -63,5 +50,27 @@ public class Main {
         SimplePipe pipe_12 = new SimplePipe((Writeable) df);
         ImageSource imageSource = new ImageSource(pipe_12, "loetstellen.jpg");
         imageSource.run();
+    }
+
+    private static List<Coordinate> createMinList() {
+        List<Coordinate> min = new ArrayList<>();
+        min.add(new Coordinate(71, 75));
+        min.add(new Coordinate(108, 78));
+        min.add(new Coordinate(200, 78));
+        min.add(new Coordinate(263, 77));
+        min.add(new Coordinate(328, 79));
+        min.add(new Coordinate(394, 79));
+        return min;
+    }
+
+    private static List<Coordinate> createMaxList() {
+        List<Coordinate> max = new ArrayList<>();
+        max.add(new Coordinate(75, 79));
+        max.add(new Coordinate(112, 82));
+        max.add(new Coordinate(204, 82));
+        max.add(new Coordinate(267, 81));
+        max.add(new Coordinate(332, 83));
+        max.add(new Coordinate(398, 83));
+        return max;
     }
 }
