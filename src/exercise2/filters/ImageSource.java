@@ -11,6 +11,10 @@ public class ImageSource extends Source<PlanarImage> {
     private String path;
     private boolean created = false;
 
+    public ImageSource(String path) {
+        this.path = path;
+    }
+
     public ImageSource(Writeable<PlanarImage> output, String path) {
         super(output);
         this.path = path;

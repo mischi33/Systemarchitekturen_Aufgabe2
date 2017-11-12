@@ -3,8 +3,10 @@ package exercise2;
 import exercise2.filters.*;
 import exercise2.filters.calcCentroidsFilter.CalcCentroidsFilter;
 import exercise2.filters.calcCentroidsFilter.Coordinate;
+import pmp.interfaces.Readable;
 import pmp.interfaces.Writeable;
 import pmp.pipes.SimplePipe;
+
 
 import java.awt.*;
 import java.io.*;
@@ -14,7 +16,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         createList();
-        pushPipe();
+        pullPipe();
 
     }
 
@@ -54,6 +56,45 @@ public class Main {
         SimplePipe pipe_15 = new SimplePipe((Writeable) df);
         ImageSource imageSource = new ImageSource(pipe_15, "loetstellen.jpg");
         imageSource.run();
+    }
+
+    private static void pullPipe() {
+        List<Coordinate> min = createMinList();
+        List<Coordinate> max = createMaxList();
+        ImageSource imageSource = new ImageSource(("loetstellen.jpg"));
+        SimplePipe pipe_1 = new SimplePipe(imageSource);
+        DisplayFilter displayFilter = new DisplayFilter((Readable) pipe_1);
+        SimplePipe pipe_2 = new SimplePipe((Readable) displayFilter);
+        ROIFilter roiFilter = new ROIFilter((Readable) pipe_2, new Rectangle(0, 50, 448, 100));
+        SimplePipe pipe_3 = new SimplePipe((Readable) roiFilter);
+        DisplayFilter displayFilter1 = new DisplayFilter((Readable) pipe_3);
+        SimplePipe pipe_4 = new SimplePipe((Readable) displayFilter1);
+        ThresholdFilter thresholdFilter = new ThresholdFilter((Readable) pipe_4);
+        SimplePipe pipe_5 = new SimplePipe((Readable) thresholdFilter);
+        DisplayFilter displayFilter2 = new DisplayFilter((Readable) pipe_5);
+        SimplePipe pipe_6 = new SimplePipe((Readable) displayFilter2);
+        MedianFilter medianFilter = new MedianFilter((Readable) pipe_6);
+        SimplePipe pipe_7 = new SimplePipe((Readable) medianFilter);
+        DisplayFilter displayFilter3 = new DisplayFilter((Readable) pipe_7);
+        SimplePipe pipe_8 = new SimplePipe((Readable) displayFilter3);
+        OpeningFilter openingFilter=new OpeningFilter((Readable)pipe_8);
+        SimplePipe pipe_9 =new SimplePipe((Readable)openingFilter);
+        DisplayFilter displayFilter4 =new DisplayFilter((Readable)pipe_9);
+        SimplePipe pipe_10 = new SimplePipe((Readable)displayFilter4);
+        SaveResultFilter saveResultFilter=new SaveResultFilter((Readable)pipe_10);
+        SimplePipe pipe_11 =new SimplePipe((Readable)saveResultFilter);
+        CalcCentroidsFilter calcCentroidsFilter=new CalcCentroidsFilter((Readable)pipe_11);
+        SimplePipe pipe_12=new SimplePipe((Readable)calcCentroidsFilter);
+        CalcDiameterFilter calcDiameterFilter=new CalcDiameterFilter((Readable)pipe_12,"loetstellenErgebnis.png");
+        SimplePipe pipe_13 =new SimplePipe((Readable)calcDiameterFilter);
+        AddOffsetFilter addOffsetFilter=new AddOffsetFilter((Readable) pipe_13,0,50);
+        SimplePipe pipe_14 =new SimplePipe((Readable)addOffsetFilter);
+        CalcToleranceFilter calcToleranceFilter=new CalcToleranceFilter((Readable)pipe_14,19,21,min,max);
+        SimplePipe pipe_15=new SimplePipe((Readable)calcToleranceFilter);
+        FileSink fileSink=new FileSink(pipe_15);
+        fileSink.run();
+
+
     }
 
     private static List<Coordinate> createMinList() {

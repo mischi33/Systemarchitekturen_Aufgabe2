@@ -2,8 +2,10 @@ package exercise2.filters;
 
 import exercise2.Ball;
 import pmp.filter.Sink;
+import pmp.interfaces.Readable;
 
 import java.io.*;
+import java.security.InvalidParameterException;
 import java.util.List;
 
 public class FileSink extends Sink<List<Ball>> {
@@ -19,6 +21,16 @@ public class FileSink extends Sink<List<Ball>> {
         }
     }
 
+    public FileSink(Readable<List<Ball>> input) throws InvalidParameterException {
+        super(input);
+        try {
+            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("result.txt"), "UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void write(List<Ball> value) throws StreamCorruptedException {
