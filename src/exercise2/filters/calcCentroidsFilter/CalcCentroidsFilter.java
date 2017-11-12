@@ -19,11 +19,11 @@ import java.util.LinkedList;
 
 public class CalcCentroidsFilter extends DataTransformationFilter2<PlanarImage, ArrayList<Coordinate>> {
 
-    private HashMap<Coordinate, Boolean> _general = new HashMap<Coordinate, Boolean>();
-    private LinkedList<ArrayList<Coordinate>> _figures = new LinkedList<ArrayList<Coordinate>>();
+    private HashMap<Coordinate, Boolean> _general = new HashMap<>();
+    private LinkedList<ArrayList<Coordinate>> _figures = new LinkedList<>();
     private javax.media.jai.PlanarImage _image;
 
-    
+
     public CalcCentroidsFilter(Readable<PlanarImage> input) throws InvalidParameterException {
         super(input);
     }
