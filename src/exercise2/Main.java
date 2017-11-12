@@ -5,9 +5,7 @@ import exercise2.filters.calcCentroidsFilter.CalcCentroidsFilter;
 import pmp.interfaces.Writeable;
 import pmp.pipes.SimplePipe;
 
-import javax.media.jai.PlanarImage;
 import java.awt.*;
-import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
@@ -18,8 +16,8 @@ public class Main {
     private static void pushPipe() {
         ImageSink imageSink = new ImageSink();
         SimplePipe pipe_1 = new SimplePipe(imageSink);
-        CalcAusdehnungsFilter calcAusdehnungsFilter= new CalcAusdehnungsFilter((Writeable) pipe_1,"loetstellenErgebnis.png");
-        SimplePipe pipe_x = new SimplePipe((Writeable)calcAusdehnungsFilter) ;
+        CalcDiameterFilter calcDiameterFilter = new CalcDiameterFilter((Writeable) pipe_1,"loetstellenErgebnis.png");
+        SimplePipe pipe_x = new SimplePipe((Writeable) calcDiameterFilter) ;
         CalcCentroidsFilter calcCentroidsFilter = new CalcCentroidsFilter((Writeable) pipe_x);
         SimplePipe pipe_2 = new SimplePipe((Writeable) calcCentroidsFilter);
         SaveResultFilter saveResultFilter = new SaveResultFilter((Writeable) pipe_2);
