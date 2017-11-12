@@ -23,7 +23,7 @@ public class Main {
     }
 
     private static void pushPipe(List<Coordinate> min, List<Coordinate> max, int offsetX, int offsetY) {
-        FileSink fileSink = new FileSink();
+        FileSink fileSink = new FileSink("resultPushPipe.txt");
         SimplePipe pipe_1 = new SimplePipe(fileSink);
         CalcToleranceFilter calcToleranceFilter = new CalcToleranceFilter((Writeable) pipe_1, 19, 21, min, max);
         SimplePipe pipe_2 = new SimplePipe((Writeable) calcToleranceFilter);
@@ -88,7 +88,7 @@ public class Main {
         SimplePipe pipe_14 = new SimplePipe((Readable) addOffsetFilter);
         CalcToleranceFilter calcToleranceFilter = new CalcToleranceFilter((Readable) pipe_14, 19, 21, min, max);
         SimplePipe pipe_15 = new SimplePipe((Readable) calcToleranceFilter);
-        FileSink fileSink = new FileSink(pipe_15);
+        FileSink fileSink = new FileSink(pipe_15, "resultPullPipe.txt");
         fileSink.run();
     }
 

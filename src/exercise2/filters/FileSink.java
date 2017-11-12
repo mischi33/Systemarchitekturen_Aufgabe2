@@ -11,9 +11,9 @@ import java.util.List;
 public class FileSink extends Sink<List<Ball>> {
     private BufferedWriter writer;
 
-    public FileSink () {
+    public FileSink (String path) {
         try {
-            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("result.txt"), "UTF-8"));
+            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path), "UTF-8"));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         } catch (FileNotFoundException e) {
@@ -21,10 +21,10 @@ public class FileSink extends Sink<List<Ball>> {
         }
     }
 
-    public FileSink(Readable<List<Ball>> input) throws InvalidParameterException {
+    public FileSink(Readable<List<Ball>> input, String path) throws InvalidParameterException {
         super(input);
         try {
-            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("result.txt"), "UTF-8"));
+            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path), "UTF-8"));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         } catch (FileNotFoundException e) {
