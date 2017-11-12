@@ -2,10 +2,13 @@ package exercise2;
 
 import exercise2.filters.*;
 import exercise2.filters.calcCentroidsFilter.CalcCentroidsFilter;
+import exercise2.filters.calcCentroidsFilter.Coordinate;
 import pmp.interfaces.Writeable;
 import pmp.pipes.SimplePipe;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -14,9 +17,27 @@ public class Main {
     }
 
     private static void pushPipe() {
+        List<Coordinate> min = new ArrayList<>();
+        min.add(new Coordinate(71, 75));
+        min.add(new Coordinate(108, 78));
+        min.add(new Coordinate(200, 78));
+        min.add(new Coordinate(263, 77));
+        min.add(new Coordinate(328, 79));
+        min.add(new Coordinate(394, 79));
+        List<Coordinate> max = new ArrayList<>();
+        max.add(new Coordinate(75, 79));
+        max.add(new Coordinate(112, 82));
+        max.add(new Coordinate(204, 82));
+        max.add(new Coordinate(267, 81));
+        max.add(new Coordinate(332, 83));
+        max.add(new Coordinate(398, 83));
+
+
         ImageSink imageSink = new ImageSink();
         SimplePipe pipe_1 = new SimplePipe(imageSink);
-        CalcDiameterFilter calcDiameterFilter = new CalcDiameterFilter((Writeable) pipe_1,"loetstellenErgebnis.png");
+        CalcToleranceFilter calcToleranceFilter = new CalcToleranceFilter((Writeable) pipe_1, 19, 21, min, max);
+        SimplePipe pipe_y = new SimplePipe((Writeable) calcToleranceFilter);
+        CalcDiameterFilter calcDiameterFilter = new CalcDiameterFilter((Writeable) pipe_y,"loetstellenErgebnis.png");
         SimplePipe pipe_x = new SimplePipe((Writeable) calcDiameterFilter) ;
         CalcCentroidsFilter calcCentroidsFilter = new CalcCentroidsFilter((Writeable) pipe_x);
         SimplePipe pipe_2 = new SimplePipe((Writeable) calcCentroidsFilter);

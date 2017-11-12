@@ -24,28 +24,30 @@ public class CalcToleranceFilter extends DataTransformationFilter2<List<Ball>, L
         this.diameterToleranceMax = diameterToleranceMax;
     }
 
-    public CalcToleranceFilter(Writeable<List<Ball>> output, Integer diameterTolerance, List<Coordinate> coordinateTolerance) throws InvalidParameterException {
+    public CalcToleranceFilter(Writeable<List<Ball>> output, Integer diameterToleranceMin, Integer diameterToleranceMax, List<Coordinate> coordinateToleranceMin, List<Coordinate> coordinateToleranceMax) throws InvalidParameterException {
         super(output);
-        this.coordinateToleranceMin = coordinateTolerance;
-        this.diameterToleranceMin = diameterTolerance;
+        this.coordinateToleranceMin = coordinateToleranceMin;
+        this.coordinateToleranceMax = coordinateToleranceMax;
+        this.diameterToleranceMin = diameterToleranceMax;
+        this.diameterToleranceMax = diameterToleranceMax;
     }
 
     @Override
     protected List<Ball> process(List<Ball> entity) {
         List<Ball> balls = new ArrayList<>();
-        for (int i = 0; i < entity.size(); i++) {
+        for (int i = 1; i < entity.size(); i++) {
             Ball ball = entity.get(i);
             Coordinate toleranceCoordMin = coordinateToleranceMin.get(i);
             Coordinate toleranceCoordMax = coordinateToleranceMax.get(i);
-            if (ball.getCoordinate()._x > toleranceCoordMin._x &&
-                    ball.getCoordinate()._x < toleranceCoordMax._x &&
-                    ball.getCoordinate()._y > toleranceCoordMin._y &&
-                    ball.getCoordinate()._y < toleranceCoordMax._y) {
+            if (ball.getCoordinate()._x >= toleranceCoordMin._x &&
+                    ball.getCoordinate()._x <= toleranceCoordMax._x &&
+                    ball.getCoordinate()._y >= toleranceCoordMin._y &&
+                    ball.getCoordinate()._y <= toleranceCoordMax._y) {
                 ball.setCoordToleranceOk(true);
             } else {
                 ball.setDiameterToleranceOk(false);
             }
-            if (ball.getDiameter() > diameterToleranceMin && ball.getDiameter() < diameterToleranceMax) {
+            if (ball.getDiameter() >= diameterToleranceMin && ball.getDiameter() <= diameterToleranceMax) {
                 ball.setDiameterToleranceOk(true);
             } else {
                 ball.setDiameterToleranceOk(false);
