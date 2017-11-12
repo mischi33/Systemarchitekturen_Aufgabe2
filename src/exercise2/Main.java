@@ -24,8 +24,10 @@ public class Main {
         SimplePipe pipe_1 = new SimplePipe(fileSink);
         CalcToleranceFilter calcToleranceFilter = new CalcToleranceFilter((Writeable) pipe_1, 19, 21, min, max);
         SimplePipe pipe_y = new SimplePipe((Writeable) calcToleranceFilter);
-        CalcDiameterFilter calcDiameterFilter = new CalcDiameterFilter((Writeable) pipe_y,"loetstellenErgebnis.png");
-        SimplePipe pipe_x = new SimplePipe((Writeable) calcDiameterFilter) ;
+        AddOffsetFilter addOffsetFilter = new AddOffsetFilter((Writeable) pipe_y, 0, 50);
+        SimplePipe pipe_z = new SimplePipe((Writeable)addOffsetFilter);
+        CalcDiameterFilter calcDiameterFilter = new CalcDiameterFilter((Writeable) pipe_z, "loetstellenErgebnis.png");
+        SimplePipe pipe_x = new SimplePipe((Writeable) calcDiameterFilter);
         CalcCentroidsFilter calcCentroidsFilter = new CalcCentroidsFilter((Writeable) pipe_x);
         SimplePipe pipe_2 = new SimplePipe((Writeable) calcCentroidsFilter);
         SaveResultFilter saveResultFilter = new SaveResultFilter((Writeable) pipe_2);
