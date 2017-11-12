@@ -11,9 +11,6 @@ import java.awt.image.renderable.ParameterBlock;
 import java.awt.image.renderable.RenderableImage;
 import java.security.InvalidParameterException;
 
-/**
- * Created by Michelle on 06.11.2017.
- */
 public class ThresholdFilter extends DataTransformationFilter2<PlanarImage, PlanarImage> {
 
 

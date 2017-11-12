@@ -13,7 +13,6 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  *
  */
 public class MyConcurrentHashMap<K,V> {
- 
 	private Map<K,V> hashMap = new HashMap<>();
 	//non-fair read write lock
 	private final ReadWriteLock lock = new ReentrantReadWriteLock();

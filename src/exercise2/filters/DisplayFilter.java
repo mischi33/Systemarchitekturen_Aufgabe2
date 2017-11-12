@@ -5,14 +5,12 @@ import pmp.filter.DataTransformationFilter1;
 import pmp.interfaces.Readable;
 import pmp.interfaces.Writeable;
 
+
 import javax.media.jai.PlanarImage;
 import javax.swing.*;
 import java.awt.*;
 import java.security.InvalidParameterException;
 
-/**
- * Created by Michelle on 30.10.2017.
- */
 public class DisplayFilter extends DataTransformationFilter1<PlanarImage> {
 
 

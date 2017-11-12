@@ -8,9 +8,6 @@ import javax.media.jai.PlanarImage;
 import java.awt.*;
 import java.security.InvalidParameterException;
 
-/**
- * Created by Michelle on 30.10.2017.
- */
 public class ROIFilter extends DataTransformationFilter2<PlanarImage, PlanarImage> {
     private Rectangle rectangle;
 
