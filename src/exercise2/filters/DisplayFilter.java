@@ -12,20 +12,23 @@ import java.awt.*;
 import java.security.InvalidParameterException;
 
 public class DisplayFilter extends DataTransformationFilter1<PlanarImage> {
+    private String frameTitle;
 
 
-    public DisplayFilter(Readable<PlanarImage> input) throws InvalidParameterException {
+    public DisplayFilter(Readable<PlanarImage> input, String frameTitle) throws InvalidParameterException {
         super(input);
+        this.frameTitle = frameTitle;
     }
 
-    public DisplayFilter(Writeable<PlanarImage> output) throws InvalidParameterException {
+    public DisplayFilter(Writeable<PlanarImage> output, String frameTitle) throws InvalidParameterException {
         super(output);
+        this.frameTitle = frameTitle;
     }
 
     @Override
     protected void process(PlanarImage entity) {
         JFrame frame = new JFrame();
-        frame.setTitle("Lötstellen.jpg");
+        frame.setTitle(frameTitle);
         Container contentPane = frame.getContentPane();
         contentPane.setLayout(new BorderLayout());
         DisplayJAI displayJAI = new DisplayJAI(entity);
