@@ -45,7 +45,7 @@ public class CalcToleranceFilter extends DataTransformationFilter2<List<Ball>, L
                     ball.getCoordinate()._y <= toleranceCoordMax._y) {
                 ball.setCoordToleranceOk(true);
             } else {
-                ball.setDiameterToleranceOk(false);
+                ball.setCoordToleranceOk(false);
             }
             if (ball.getDiameter() >= diameterToleranceMin && ball.getDiameter() <= diameterToleranceMax) {
                 ball.setDiameterToleranceOk(true);
