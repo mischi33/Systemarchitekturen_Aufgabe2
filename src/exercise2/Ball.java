@@ -44,19 +44,19 @@ public class Ball {
 
     @Override
     public String toString(){
-        String data="Centroid Coordinates:\nx = "+coordinate._x + "\ny = "+coordinate._y + "\n\n"+"Diameter = " + diameter +"\n\n";
+        String data="Centroid Coordinates: \n\rx = "+coordinate._x + "; \n\ry = "+coordinate._y + "; \n\n\r\r"+"Diameter = " + diameter +"; \n\n\r\r";
         if (coordToleranceOk && diameterToleranceOk){
-            return data+ "Coordinate is in Tolerance\nDiameter is in Tolerance";
+            return data+ "Coordinate is in Tolerance; \n\rDiameter is in Tolerance;";
 
         }
         if (coordToleranceOk && !diameterToleranceOk){
-            return data+ "Coordinate is in Tolerance\nDiameter is not in Tolerance";
+            return data+ "Coordinate is in Tolerance; \n\rDiameter is not in Tolerance;";
 
         }
         if (!coordToleranceOk && diameterToleranceOk){
-            return data+ "Coordinate is not in Tolerance\nDiameter is in Tolerance";
+            return data+ "Coordinate is not in Tolerance; \n\rDiameter is in Tolerance;";
 
         }
-            return data+ "Coordinate is not in Tolerance\nDiameter is not in Tolerance";
+            return data+ "Coordinate is not in Tolerance; \n\rDiameter is not in Tolerance;";
     }
 }

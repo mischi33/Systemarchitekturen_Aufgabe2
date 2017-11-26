@@ -104,7 +104,7 @@ public class Main {
     private static List<Coordinate> createMaxList(List<Coordinate> expected, int tolerance) {
         List<Coordinate> max = new ArrayList<>();
         for (Coordinate c : expected) {
-            max.add(new Coordinate(c._x - tolerance, c._y - tolerance));
+            max.add(new Coordinate(c._x + tolerance, c._y + tolerance));
         }
         return max;
     }
