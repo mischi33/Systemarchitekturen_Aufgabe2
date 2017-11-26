@@ -1,0 +1,45 @@
+Centroid Coordinates: 
+x = 175; 
+y = 120; 
+
+Diameter = 0; 
+
+Coordinate is not in Tolerance; 
+Diameter is not in Tolerance;
+-----------------------------------------------------
+Centroid Coordinates: 
+x = 240; 
+y = 120; 
+
+Diameter = 0; 
+
+Coordinate is not in Tolerance; 
+Diameter is not in Tolerance;
+-----------------------------------------------------
+Centroid Coordinates: 
+x = 303; 
+y = 119; 
+
+Diameter = 0; 
+
+Coordinate is not in Tolerance; 
+Diameter is not in Tolerance;
+-----------------------------------------------------
+Centroid Coordinates: 
+x = 368; 
+y = 121; 
+
+Diameter = 0; 
+
+Coordinate is not in Tolerance; 
+Diameter is not in Tolerance;
+-----------------------------------------------------
+Centroid Coordinates: 
+x = 435; 
+y = 121; 
+
+Diameter = 0; 
+
+Coordinate is not in Tolerance; 
+Diameter is not in Tolerance;
+-----------------------------------------------------
